@@ -12,11 +12,12 @@ autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%,
 autocmd FileType python set foldmethod=indent
 autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd BufRead,BufNewFile *.md setlocal spell!  ]])
-if O.transparent_window then
-  cmd "au ColorScheme * hi Normal ctermbg=none guibg=none"
-  else
-      cmd "au ColorScheme * hi Normal ctermbg=none guibg=#0F0E0E"
-end
+
+-- if O.transparent_window then
+--   cmd "au ColorScheme * hi Normal ctermbg=none guibg=none"
+--   else
+--       cmd "au ColorScheme * hi Normal ctermbg=none guibg=#0F0E0E"
+-- end
 
 cmd([[
 let t:is_transparent = 0
@@ -32,7 +33,6 @@ function! Toggle_transparent()
 endfunction
 nnoremap <C-t> : call Toggle_transparent()<CR>
 ]])
-
 
 
 

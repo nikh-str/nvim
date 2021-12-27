@@ -141,6 +141,11 @@ snippet boxed "boxed" iAw
 endsnippet
 
 context "math()"
+snippet set "set" iAw
+\\{${1:${VISUAL}}\\} $0
+endsnippet
+
+context "math()"
 snippet pdd "partial derivation in line" iA
 \\partial_{$1} $0
 endsnippet
@@ -228,8 +233,18 @@ snippet lr  "left( right)" iAw
 endsnippet
 
 context "math()"
+snippet bp  "big( big)" iAw
+\\big( ${1:${VISUAL}} \\big) $0
+endsnippet
+
+context "math()"
 snippet blr  "left[ right]" iAw
 \\left[ ${1:${VISUAL}} \\right] $0
+endsnippet
+
+context "math()"
+snippet cbr  "left{ right}" iAw
+\\left\lbrace ${1:${VISUAL}} \\right\rbrace $0
 endsnippet
 
 context "math()"
@@ -373,6 +388,11 @@ snippet ;d "\delta" iA
 endsnippet
 
 context "math()"
+snippet ;h "\eta" iA
+\eta 
+endsnippet
+
+context "math()"
 snippet ;e "\epsilon" iA
 \epsilon 
 endsnippet
@@ -387,6 +407,10 @@ snippet ;p "\pi" iA
 \pi 
 endsnippet
  
+context "math()"
+snippet ;x "\ch" iA
+\chi
+endsnippet
 
 context "math()"
 snippet ;o "\omega" iA
