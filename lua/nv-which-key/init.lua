@@ -106,72 +106,6 @@ local mappings = {
 		},
 	},
 
-	-- diagnostics vanilla nvim
-	-- -- diagnostic
-	-- function lv_utils.get_all()
-	--     vim.lsp.diagnostic.get_all()
-	-- end
-	-- function lv_utils.get_next()
-	--     vim.lsp.diagnostic.get_next()
-	-- end
-	-- function lv_utils.get_prev()
-	--     vim.lsp.diagnostic.get_prev()
-	-- end
-	-- function lv_utils.goto_next()
-	--     vim.lsp.diagnostic.goto_next()
-	-- end
-	-- function lv_utils.goto_prev()
-	--     vim.lsp.diagnostic.goto_prev()
-	-- end
-	-- function lv_utils.show_line_diagnostics()
-	--     vim.lsp.diagnostic.show_line_diagnostics()
-	-- end
-
-	-- " Available Debug Adapters:
-	-- "   https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/
-	-- " Adapter configuration and installation instructions:
-	-- "   https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
-	-- " Debug Adapter protocol:
-	-- "   https://microsoft.github.io/debug-adapter-protocol/
-	-- " Debugging
-	-- command! DebugToggleBreakpoint lua require'dap'.toggle_breakpoint()
-	-- command! DebugStart lua require'dap'.continue()
-	-- command! DebugContinue lua require'dap'.continue()
-	-- command! DebugStepOver lua require'dap'.step_over()
-	-- command! DebugStepOut lua require'dap'.step_out()
-	-- command! DebugStepInto lua require'dap'.step_into()
-	-- command! DebugToggleRepl lua require'dap'.repl.toggle()
-	-- command! DebugGetSession lua require'dap'.session()
-	-- D = {
-	--     name = "Debug",
-	--     b = {"<cmd>DebugToggleBreakpoint<cr>", "Toggle Breakpoint"},
-	--     c = {"<cmd>DebugContinue<cr>", "Continue"},
-	--     i = {"<cmd>DebugStepInto<cr>", "Step Into"},
-	--     o = {"<cmd>DebugStepOver<cr>", "Step Over"},
-	--     r = {"<cmd>DebugToggleRepl<cr>", "Toggle Repl"},
-	--     s = {"<cmd>DebugStart<cr>", "Start"}
-	-- },
-	-- g = {
-	--     name = "Git",
-	--     j = {"<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk"},
-	--     k = {"<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk"},
-	--     l = {"<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame"},
-	--     p = {"<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk"},
-	--     r = {"<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk"},
-	--     R = {"<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer"},
-	--     s = {"<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk"},
-	--     u = {
-	--         "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-	--         "Undo Stage Hunk"
-	--     },
-	--     o = {"<cmd>Telescope git_status<cr>", "Open changed file"},
-	--     b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
-	--     c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
-	--     C = {
-	--         "<cmd>Telescope git_bcommits<cr>",
-	--         "Checkout commit(for current file)"
-	--     }
-	-- },
 	l = {
 		name = "LSP",
 		a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
@@ -243,11 +177,11 @@ local mappings = {
 		t = { "<cmd>SymbolsOutline<cr>", "Document Tags" },
 		r = { "<cmd>call Toggle_relativenumbers()<cr>", "Relative numbers" },
 	},
-	g = {
-		name = "SnipRun",
-		g = { "<cmd>SnipRun<cr>", "SnipRun" },
-		c = { "<cmd>SnipClose<cr>", "SnipClose" },
-	},
+	-- g = {
+	-- 	name = "SnipRun",
+	-- 	g = { "<cmd>SnipRun<cr>", "SnipRun" },
+	-- 	c = { "<cmd>SnipClose<cr>", "SnipClose" },
+	-- },
 
 	p = {
 		name = "Hop",
@@ -268,55 +202,16 @@ local mappings = {
 		name = "Vimwiki",
 		c = { "<cmd>VimwikiToggleListItem<cr>", "Toggle List Item" },
 	},
+	L = {
+		name = "LaTeX",
+		c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
+		f = { "<cmd>call vimtex#fzf#run()<cr>", "Fzf Find" },
+		i = { "<cmd>VimtexInfo<cr>", "Project Information" },
+		s = { "<cmd>VimtexStop<cr>", "Stop Project Compilation" },
+		t = { "<cmd>VimtexTocToggle<cr>", "Toggle Table Of Content" },
+		v = { "<cmd>VimtexView<cr>", "View PDF" },
+	},
 }
-
--- -- if O.plugin.trouble.active then
---     mappings['d'] = {
---         name = "Diagnostics",
---         t = {"<cmd>TroubleToggle<cr>", "trouble"},
---         w = {"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "workspace"},
---         d = {"<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document"},
---         q = {"<cmd>TroubleToggle quickfix<cr>", "quickfix"},
---         l = {"<cmd>TroubleToggle loclist<cr>", "loclist"},
---         r = {"<cmd>TroubleToggle lsp_references<cr>", "references"}
---     }
--- end
-
--- if O.plugin.gitlinker.active then mappings["gy"] = "Gitlink" end
-
--- if O.plugin.ts_playground.active then
---     vim.api.nvim_set_keymap("n", "<leader>Th",
---                             ":TSHighlightCapturesUnderCursor<CR>",
---                             {noremap = true, silent = true})
---     mappings[""] = "Highlight Capture"
--- end
-
--- if O.plugin.lazygit.active then
---     vim.api.nvim_set_keymap("n", "<leader>gg", ":LazyGit<CR>",
---                             {noremap = true, silent = true})
---     mappings["gg"] = "LazyGit"
--- end
--- if O.plugin.telescope_project.active then
---     -- open projects
---     vim.api.nvim_set_keymap('n', '<leader>p',
---                             ":lua require'telescope'.extensions.project.project{}<CR>",
---                             {noremap = true, silent = true})
---     mappings["p"] = "Projects"
--- end
-
--- [";"] = "Dashboard",
-
--- if O.lang.latex.active then
-mappings["L"] = {
-	name = "+Latex",
-	c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
-	f = { "<cmd>call vimtex#fzf#run()<cr>", "Fzf Find" },
-	i = { "<cmd>VimtexInfo<cr>", "Project Information" },
-	s = { "<cmd>VimtexStop<cr>", "Stop Project Compilation" },
-	t = { "<cmd>VimtexTocToggle<cr>", "Toggle Table Of Content" },
-	v = { "<cmd>VimtexView<cr>", "View PDF" },
-}
--- end
 
 local wk = require("which-key")
 wk.register(mappings, opts)

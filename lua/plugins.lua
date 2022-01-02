@@ -31,7 +31,10 @@ return require("packer").startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 
 	-- Status Line
-	use({ "glepnir/galaxyline.nvim", branch = "main", requires = { "kyazdani42/nvim-web-devicons" } })
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	})
 
 	-- Buffer Bar
 	-- use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
