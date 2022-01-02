@@ -2,6 +2,10 @@ require("which-key").setup({
 	plugins = {
 		marks = true, -- shows a list of your marks on ' and `
 		registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+		spelling = {
+			enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+			suggestions = 20, -- how many suggestions should be shown in the list?
+		},
 		-- the presets plugin, adds help for a bunch of default keybindings in Neovim
 		-- No actual key bindings are created
 		presets = {
@@ -52,10 +56,6 @@ local opts = {
 vim.api.nvim_set_keymap("n", "<Leader>H", ':let @/=""<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<Leader>r", ":RnvimrToggle<CR>", { noremap = true, silent = true })
--- explorer
-
--- TODO this introduces some bugs unfortunately
-vim.api.nvim_set_keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<Leader>s", ":Telescope find_files<CR>", { noremap = true, silent = true })
 
@@ -68,18 +68,26 @@ vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", { noremap = true
 
 vim.api.nvim_set_keymap("n", "<leader>v", "<C-W>v<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>h", "<C-W>s<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<A-i>", '<CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true }) --see also mappings.lua
+-- vim.api.nvim_set_keymap("n", "<A-i>", '<CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true }) --see also mappings.lua
 vim.api.nvim_set_keymap("v", "gv", "<Plug>SnipRun", { silent = true })
 
 local mappings = {
 
 	["/"] = "Comment",
-	["c"] = "Close Buffer",
-	["e"] = "Explorer",
-	-- ["f"] = "Find File",
+	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	["q"] = { "<cmd>q!<CR>", "Quit" },
 	["H"] = "No Highlight",
 	["v"] = "split right",
 	["h"] = "split below",
+
+	p = {
+		name = "Packer",
+		c = { "<cmd>PackerCompile<cr>", "Compile" },
+		i = { "<cmd>PackerInstall<cr>", "Install" },
+		s = { "<cmd>PackerSync<cr>", "Sync" },
+		S = { "<cmd>PackerStatus<cr>", "Status" },
+		u = { "<cmd>PackerUpdate<cr>", "Update" },
+	},
 
 	b = {
 		name = "Buffers",
@@ -170,6 +178,30 @@ local mappings = {
 		n = { "<cmd>lua require'nv-telescope'.nvim_config()<cr>", "nvim conf" },
 		N = { "<cmd>lua require'nv-telescope'.find_notes()<cr>", "Notes" },
 	},
+
+	g = {
+		name = "Git",
+		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+		u = {
+			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+			"Undo Stage Hunk",
+		},
+		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+		d = {
+			"<cmd>Gitsigns diffthis HEAD<cr>",
+			"Diff",
+		},
+	},
+
 	t = {
 		name = "Toggle",
 		s = { "<cmd>setlocal spell! spelllang=en,el<CR>", "Spelling" },
@@ -183,7 +215,7 @@ local mappings = {
 	-- 	c = { "<cmd>SnipClose<cr>", "SnipClose" },
 	-- },
 
-	p = {
+	P = {
 		name = "Hop",
 		w = { "<cmd>HopWord<cr>", "HopWord" },
 		l = { "<cmd>HopLine<cr>", "HopLine" },
@@ -194,10 +226,7 @@ local mappings = {
 		s = { "<cmd>SessionSave<cr>", "Save Session" },
 		l = { "<cmd>SessionLoad<cr>", "Load Session" },
 	},
-	T = {
-		name = "Treesitter",
-		i = { ":TSConfigInfo<cr>", "Info" },
-	},
+
 	w = {
 		name = "Vimwiki",
 		c = { "<cmd>VimwikiToggleListItem<cr>", "Toggle List Item" },
@@ -210,6 +239,16 @@ local mappings = {
 		s = { "<cmd>VimtexStop<cr>", "Stop Project Compilation" },
 		t = { "<cmd>VimtexTocToggle<cr>", "Toggle Table Of Content" },
 		v = { "<cmd>VimtexView<cr>", "View PDF" },
+	},
+	T = {
+		name = "Terminal",
+		-- n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
+		u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
+		t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
+		p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
+		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 	},
 }
 

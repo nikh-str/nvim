@@ -11,7 +11,7 @@ local darkforest = {
 	base7 = "#9ca0a4",
 	base8 = "#b1b1b1",
 
-	bg = "#060606",
+	bg = "#171616",
 	bg1 = "#504945",
 	bg_popup = "#1c1e1c",
 	-- bg_highlight  = '#0e0f0e';
@@ -50,8 +50,10 @@ local darkforest = {
 
 	bracket = "#d88913",
 	currsor_bg = "#4f5b66",
-	sidebar_bg = "#16141408",
-	buf_bg = "#2C2B2B",
+	sidebar_bg = "#131212",
+	buf_sel = "#2C2B2B",
+	buf_vis = "#1C1B1B",
+	statusline = "#111010",
 	none = "NONE",
 }
 
@@ -84,11 +86,11 @@ end
 
 function darkforest.load_syntax()
 	local syntax = {
-		Normal = { fg = darkforest.fg, bg = darkforest.bg_highlight }, -- also changes buffer fill
+		Normal = { fg = darkforest.fg, bg = darkforest.bg }, -- also changes buffer fill
 		Terminal = { fg = darkforest.fg, bg = darkforest.bg },
 		SignColumn = { fg = darkforest.fg, bg = darkforest.none },
 		FoldColumn = { fg = darkforest.fg_alt, bg = darkforest.black },
-		VertSplit = { fg = darkforest.base1, bg = darkforest.base1 },
+		VertSplit = { fg = darkforest.base1, bg = darkforest.sidebar_bg },
 		Folded = { fg = darkforest.teal, bg = darkforest.none },
 		EndOfBuffer = { fg = darkforest.bg, bg = darkforest.none },
 		IncSearch = { fg = darkforest.bg1, bg = darkforest.orange, style = darkforest.none },
@@ -128,11 +130,13 @@ function darkforest.load_syntax()
 		TabLineFill = { bg = darkforest.base5 },
 		TabLineSel = { style = "bold", bg = darkforest.buf_bg, fg = darkforest.violet },
 		SepVisible = { fg = darkforest.cyan },
-		BufSep = { fg = darkforest.yellow },
-		BufSel = { fg = darkforest.blue, bg = darkforest.buf_bg, style = "bold" },
-		BufferClose = { bg = darkforest.base3, fg = darkforest.violet },
-		StatusLine = { fg = darkforest.base8, bg = darkforest.base0, style = darkforest.none },
-		StatusLineNC = { fg = darkforest.grey, bg = darkforest.cyan, style = darkforest.none },
+		BufSep = { fg = darkforest.red, bg = darkforest.buf_sel },
+		BufSel = { fg = darkforest.magenta, bg = darkforest.buf_sel, style = "bold" },
+		BufVis = { fg = darkforest.base5, bg = darkforest.buf_vis },
+		BufferClose = { bg = darkforest.base3, fg = darkforest.red },
+		StatusLine = { fg = darkforest.base8, bg = darkforest.statusline, style = darkforest.none },
+		Tabline = { fg = darkforest.grey, bg = darkforest.statusline, style = darkforest.none },
+		StatusLineNC = { fg = darkforest.grey, bg = darkforest.statusline, style = darkforest.none },
 		SpellBad = { fg = darkforest.fg, bg = darkforest.none, style = "undercurl" },
 		SpellCap = { fg = darkforest.blue, bg = darkforest.none, style = "undercurl" },
 		SpellLocal = { fg = darkforest.cyan, bg = darkforest.none, style = "undercurl" },
@@ -244,7 +248,7 @@ function darkforest.load_plugin_syntax()
 		GitGutterChangeDelete = { fg = darkforest.violet },
 
 		GitSignsAdd = { fg = darkforest.dark_green },
-		GitSignsChange = { fg = darkforest.blue },
+		GitSignsChange = { fg = darkforest.orange },
 		GitSignsDelete = { fg = darkforest.red },
 
 		SignifySignAdd = { fg = darkforest.dark_green },

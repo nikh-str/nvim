@@ -55,9 +55,6 @@ return require("packer").startup(function(use)
 	-- Colorscheme
 	use("tiagovla/tokyodark.nvim")
 
-	-- Lua formatter
-	-- use 'andrejlevkovitch/vim-lua-format'
-
 	-- Symbol Outline
 	use({ "simrat39/symbols-outline.nvim" })
 	-- Treesitter
@@ -148,26 +145,17 @@ return require("packer").startup(function(use)
 	-- Ranger
 	use({ "kevinhwang91/rnvimr" })
 
-	-- Floating terminal
+	-- Git
 	use({
-		"numToStr/FTerm.nvim",
-		event = "BufRead",
-		config = function()
-			require("FTerm").setup({
-				dimensions = { height = 0.8, width = 0.8, x = 0.5, y = 0.5 },
-				border = "single", -- or 'double'
-			})
-		end,
+		"lewis6991/gitsigns.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
 	})
-	use({ "vim-pandoc/vim-pandoc" })
 
-	-- -- Sane gx for netrw_gx bug
-	-- use({
-	-- 	"felipec/vim-sanegx",
-	-- 	event = "BufRead",
-	-- })
-	-- use({ "iamcco/markdown-preview.nvim", run = [[sh -c 'cd app && yarn install']] })
-	-- use({ "jbyuki/nabla.nvim" })
+	-- Floating terminal
+	use({ "akinsho/toggleterm.nvim" })
+
 	use({
 		"phaazon/hop.nvim",
 		as = "hop",
@@ -176,7 +164,7 @@ return require("packer").startup(function(use)
 			require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 		end,
 	})
-	use({ "JuliaEditorSupport/julia-vim" })
+	-- use({ "JuliaEditorSupport/julia-vim" })
 	use({ "jpalardy/vim-slime" })
 	use({ "michaelb/sniprun", run = "bash ./install.sh" })
 end)
