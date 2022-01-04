@@ -12,10 +12,10 @@ local sources = {
 	-- formatting.autopep8, --> python formatter
 	formatting.prettier, --> formatter js, ts, jsx, tsx, vue, css, scss, less, html and more ..
 
-	diagnostics.markdownlint, --> markdown style and syntax checker
+	-- diagnostics.markdownlint, --> markdown style and syntax checker
 	-- null_ls.builtins.diagnostics.write_good,
+	-- null_ls.builtins.diagnostics.chktex,
 
-	-- code_actions.eslint,
 	-- null_ls.builtins.code_actions.gitsigns,
 }
 

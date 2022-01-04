@@ -40,43 +40,13 @@ M.toggle_tree = function()
 	end
 end
 
--- local g = vim.g
-
--- g.nvim_tree_quit_on_open = 1
--- g.nvim_tree_indent_markers = 1
--- g.nvim_tree_highlight_opened_files = 1
-
--- g.nvim_tree_icons = {
---   default = '',
---   symlink = '',
---   git = {
---     unstaged = "✗",
---     staged = "✓",
---     unmerged = "",
---     renamed = "➜",
---     untracked = "★",
---     deleted = "",
---     ignored = "◌"
---     },
---   folder = {
---     arrow_open = "",
---     arrow_closed = "",
---     default = "",
---     open = "",
---     empty = "",
---     empty_open = "",
---     symlink = "",
---     symlink_open = "",
---     }
--- }
-
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 require("nvim-tree").setup({
 	disable_netrw = true,
 	hijack_netrw = true,
 	open_on_setup = false,
 	ignore_ft_on_setup = {},
-	auto_close = false,
+	auto_close = true,
 	open_on_tab = false,
 	hijack_cursor = false,
 	update_cwd = false,
@@ -107,8 +77,8 @@ require("nvim-tree").setup({
 		custom = {},
 	},
 	view = {
-		width = 30,
-		height = 30,
+		width = 25,
+		height = 25,
 		hide_root_folder = false,
 		side = "left",
 		auto_resize = true,

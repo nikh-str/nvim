@@ -12,14 +12,6 @@ M.config = function()
 			right_mouse_command = "bdelete! %d",
 			left_trunc_marker = "",
 			right_trunc_marker = "",
-			-- offsets = {
-			--     {
-			--         filetype = "NvimTree",
-			--         text = "File",
-			--         text_align = "center",
-			--         padding = 1
-			--     }
-			-- },
 			show_tab_indicators = true,
 			show_close_icon = true,
 			offsets = {

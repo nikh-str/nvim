@@ -50,7 +50,7 @@ local darkforest = {
 
 	bracket = "#d88913",
 	currsor_bg = "#4f5b66",
-	sidebar_bg = "#131212",
+	sidebar_bg = "#0E0D0D",
 	buf_sel = "#2C2B2B",
 	buf_vis = "#1C1B1B",
 	statusline = "#111010",
@@ -258,8 +258,8 @@ function darkforest.load_plugin_syntax()
 		dbui_tables = { fg = darkforest.blue },
 
 		DiagnosticSignError = { fg = darkforest.red },
-		DiagnosticSignWarning = { fg = darkforest.yellow },
-		DiagnosticSignInformation = { fg = darkforest.blue },
+		DiagnosticSignWarn = { fg = darkforest.yellow },
+		DiagnosticSignInfo = { fg = darkforest.blue },
 		DiagnosticSignHint = { fg = darkforest.cyan },
 
 		DiagnosticVirtualTextError = { fg = darkforest.red },

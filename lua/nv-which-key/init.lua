@@ -57,8 +57,6 @@ vim.api.nvim_set_keymap("n", "<Leader>H", ':let @/=""<CR>', { noremap = true, si
 
 vim.api.nvim_set_keymap("n", "<Leader>r", ":RnvimrToggle<CR>", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("n", "<Leader>s", ":Telescope find_files<CR>", { noremap = true, silent = true })
-
 -- dashboard
 vim.api.nvim_set_keymap("n", "<Leader>;", ":Dashboard<CR>", { noremap = true, silent = true })
 
@@ -76,6 +74,7 @@ local mappings = {
 	["/"] = "Comment",
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["q"] = { "<cmd>q!<CR>", "Quit" },
+	["s"] = { "<cmd>w<CR>", "write" },
 	["H"] = "No Highlight",
 	["v"] = "split right",
 	["h"] = "split below",
@@ -227,10 +226,6 @@ local mappings = {
 		l = { "<cmd>SessionLoad<cr>", "Load Session" },
 	},
 
-	w = {
-		name = "Vimwiki",
-		c = { "<cmd>VimwikiToggleListItem<cr>", "Toggle List Item" },
-	},
 	L = {
 		name = "LaTeX",
 		c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
