@@ -45,7 +45,6 @@ return require("packer").startup(function(use)
 		end,
 		event = "BufRead",
 	})
-	-- use {'romgrk/barbar.nvim'}
 
 	-- whichkey
 	use({ "folke/which-key.nvim" })
@@ -140,6 +139,14 @@ return require("packer").startup(function(use)
 
 	use({ "lervag/vimtex" })
 	use({ "vimwiki/vimwiki" })
+	use({
+		"nvim-neorg/neorg",
+		config = function()
+			require("nv-neorg").config()
+		end,
+		requires = "nvim-neorg/neorg-telescope", -- Be sure to pull in the repo
+	})
+
 	use({ "sirver/ultisnips" })
 
 	-- Ranger

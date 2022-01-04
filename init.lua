@@ -23,6 +23,7 @@ require("nv-vimwiki")
 require("nv-dashboard")
 require("nv-toggleterm")
 require("nv-gitsigns")
+-- require("nv-neorg")
 -- LSP
 require("lsp")
 require("lsp.lua-ls")
