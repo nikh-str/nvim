@@ -103,6 +103,9 @@ return require("packer").startup(function(use)
 			require("nv-cmp").config()
 		end,
 	})
+	--debugger
+	use("mfussenegger/nvim-dap")
+	use("Pocco81/DAPInstall.nvim")
 
 	-- Autopairs
 	use({
@@ -139,6 +142,7 @@ return require("packer").startup(function(use)
 
 	use({ "lervag/vimtex" })
 	use({ "vimwiki/vimwiki" })
+	use("renerocksai/telekasten.nvim")
 	use({
 		"nvim-neorg/neorg",
 		config = function()

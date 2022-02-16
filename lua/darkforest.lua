@@ -17,7 +17,7 @@ local darkforest = {
 	-- bg_highlight  = '#0e0f0e';
 	bg_highlight = "#09090905",
 	-- bg_cursorline  = '#291010';
-	bg_cursorline = "#1C1B1F",
+	bg_cursorline = "#212023",
 	-- bg_visual = '#2c6656';
 	bg_visual = "#383E3B",
 

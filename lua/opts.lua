@@ -7,25 +7,25 @@ cmd("colorscheme darkforest")
 cmd([[
 au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <F3> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python set foldmethod=indent
 autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd BufRead,BufNewFile *.md setlocal spell!  ]])
 
--- cmd([[
--- let t:is_transparent = 0
--- function! Toggle_transparent()
---     if t:is_transparent == 0
---         hi Normal guibg=NONE ctermbg=NONE
---         let t:is_transparent = 1
---     else
---         set background=dark
---         hi Normal ctermbg=none guibg=#0F0E0E"
---         let t:is_transparent = 0
---     endif
--- endfunction
--- nnoremap <C-t> : call Toggle_transparent()<CR>
--- ]])
+cmd([[
+let t:is_transparent = 0
+function! Toggle_transparent()
+    if t:is_transparent == 0
+        hi Normal guibg=NONE ctermbg=NONE
+        let t:is_transparent = 1
+    else
+        set background=dark
+        hi Normal ctermbg=none guibg=#0F0E0E"
+        let t:is_transparent = 0
+    endif
+endfunction
+nnoremap <C-t> : call Toggle_transparent()<CR>
+]])
 
 opt.ruler = false
 opt.ignorecase = true

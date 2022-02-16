@@ -69,6 +69,7 @@ snippet frame "frame"
 $0
 endsnippet
 
+
 snippet pac "Package" b
 \usepackage[${1:options}]{${2:package}}$0
 endsnippet
@@ -109,6 +110,22 @@ context "math()"
 snippet bb "\mathbb" iAw
 \mathbb{${1:${VISUAL}}} $0
 endsnippet
+
+context "math()"
+snippet ln "ln" iA
+\ln $0
+endsnippet
+
+context "math()"
+snippet lagr "lagrangian" iw
+\mathcal{L} $0
+endsnippet
+
+context "math()"
+snippet cal "lagrangian" iw
+\mathcal{$1} $0
+endsnippet
+
 
 snippet bf "\textbf" 
 \textbf{${1:${VISUAL}}} $0
@@ -476,6 +493,11 @@ endsnippet
 context "math()"
 snippet ;k "\kappa" iA
 \kappa
+endsnippet
+
+context "math()"
+snippet ;b "\beta" iA
+\beta
 endsnippet
 
 context "math()"
