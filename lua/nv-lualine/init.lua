@@ -102,7 +102,7 @@ local filetype = {
 local filename = {
 	"filename",
 	-- cond = conditions.buffer_not_empty,
-	color = { fg = colors.grey, bg = colors.bg, gui = "bold" },
+	color = { fg = colors.grey, gui = "bold" },
 }
 
 local branch = {
@@ -136,7 +136,7 @@ local lsp_server = {
 local location = {
 	"location",
 	padding = 0,
-	color = { fg = colors.green, bg = colors.bg, gui = "bold" },
+	color = { fg = colors.green, gui = "bold" },
 }
 
 -- cool function for progress
@@ -149,7 +149,7 @@ local progress = {
 		local index = math.ceil(line_ratio * #chars)
 		return chars[index]
 	end,
-	color = { fg = colors.green, bg = colors.bg, gui = "bold" },
+	color = { fg = colors.green, gui = "bold" },
 }
 
 -- local spaces = function()

@@ -42,18 +42,20 @@ end
 
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 require("nvim-tree").setup({
+	-- close_if_last_window = true,
+	-- follow_current_file = true, -- This will find and focus the file in the active buffer every
+	-- time the current file is changed while the tree is open.
 	disable_netrw = true,
 	hijack_netrw = true,
 	open_on_setup = false,
 	ignore_ft_on_setup = {},
-	auto_close = true,
 	open_on_tab = false,
 	hijack_cursor = false,
 	update_cwd = false,
-	update_to_buf_dir = {
-		enable = true,
-		auto_open = true,
-	},
+	-- update_to_buf_dir = {
+	-- 	enable = true,
+	-- 	auto_open = true,
+	-- },
 	diagnostics = {
 		enable = false,
 		icons = {
@@ -78,10 +80,9 @@ require("nvim-tree").setup({
 	},
 	view = {
 		width = 25,
-		height = 25,
 		hide_root_folder = false,
 		side = "left",
-		auto_resize = true,
+		adaptive_size = true,
 		mappings = {
 			list = {
 				{ key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },

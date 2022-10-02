@@ -12,6 +12,7 @@ local darkforest = {
 	base8 = "#b1b1b1",
 
 	bg = "#171616",
+	-- bg = "#E2CDBA",
 	bg1 = "#504945",
 	bg_popup = "#1c1e1c",
 	-- bg_highlight  = '#0e0f0e';
@@ -80,6 +81,7 @@ function darkforest.highlight(group, color)
 	local style = color.style and "gui=" .. color.style or "gui=NONE"
 	local fg = color.fg and "guifg=" .. color.fg or "guifg=NONE"
 	local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
+	-- local bg = color.bg and "guibg=NONE" .. color.bg or "guibg=NONE"
 	local sp = color.sp and "guisp=" .. color.sp or ""
 	vim.api.nvim_command("highlight " .. group .. " " .. style .. " " .. fg .. " " .. bg .. " " .. sp)
 end

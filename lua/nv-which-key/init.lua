@@ -39,7 +39,7 @@ require("which-key").setup({
 })
 
 -- Set leader
-vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
@@ -156,7 +156,8 @@ local mappings = {
 	f = {
 		name = "Search",
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+		c = { "<cmd>lua require('telescope').extensions.neoclip.default()<cr>", "clipboard" },
+		C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
 		-- d = {
 		--     "<cmd>Telescope lsp_document_diagnostics<cr>",
 		--     "Document Diagnostics"
@@ -172,10 +173,11 @@ local mappings = {
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		t = { "<cmd>Telescope live_grep<cr>", "Text" },
-		C = { "<cmd>Telescope commands<cr>", "Commands" },
+		o = { "<cmd>Telescope commands<cr>", "Commands" },
 		k = { "<cmd>Telescope keymaps<cr>", "keymaps" },
 		n = { "<cmd>lua require'nv-telescope'.nvim_config()<cr>", "nvim conf" },
 		N = { "<cmd>lua require'nv-telescope'.find_notes()<cr>", "Notes" },
+		s = { "<cmd>Telescope session-lens search_session<cr>", "sessions" },
 	},
 
 	g = {

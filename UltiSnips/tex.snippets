@@ -19,6 +19,16 @@ snippet template "Basic template" b
 \usepackage{amsmath, amssymb, bm}
 \usepackage{alphabeta} 
 \usepackage{mathtools}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=15mm,
+ % right=29mm,
+% marginparwidth=4.6cm,
+marginparsep=2mm,
+ top=15mm,
+ }
 \usepackage[dvipsnames]{xcolor}
 \usepackage[parfill]{parskip} % empty lines instead of indent between paragraphs
 \usepackage{braket}
@@ -43,7 +53,7 @@ urlcolor={c3} % external links/urls
 \usepackage{csquotes}
 % \usepackage[backend=biber]{biblatex}
 % \addbibresource{./lib.bib}
-\addbibresource{$HOME/Documents/LaTeX/Library/lib.bib}
+% \addbibresource{$HOME/Documents/LaTeX/CitationLib/lib.bib}
 
 
 \begin{document}
@@ -54,6 +64,9 @@ $0
 \end{document}
 endsnippet
 
+snippet lua "lua compile"
+%! TeX program = lualatex
+endsnippet
 
 snippet sec "section" 
 \section{${1:section name}}%
@@ -62,10 +75,24 @@ snippet sec "section"
 ${0}
 endsnippet
 
-snippet frame "frame"
-\begin{frame}{$1}
+snippet subsec "subsection" 
+\subsection{${1:subsection name}}%
+%--------------------------${2:$1}---------------------------------
+${0}
+endsnippet
+
+snippet newcomm "newcommand"
+\newcommand{${3:\name}}[${2:args}]{ ${1:code}} $0
+endsnippet
+
+
+snippet frame "frame" b
+%-------------------${3:$1}------------
+\begin{frame}
+\frametitle{$1}
 	${2:${VISUAL}}
 \end{frame}
+%-----------------------------
 $0
 endsnippet
 
@@ -78,11 +105,20 @@ snippet fig "Figure env" b
 \begin{figure}[${1:htpb}]
 	\centering
 	\includegraphics[width=0.8\textwidth]{${2:imagefile}}
-	\caption{${4:$3}}
-	\label{fig:${5:${3/\W+/-/g}}}
+	%\caption{}
+	%\label{fig:}
 \end{figure}
+$0
 endsnippet
 
+snippet ink "inkscape fig" b
+\begin{figure}[H]
+    \centering
+    \scalebox{0.7}{\import{${2:folder}}{${1:pdf_tex_file}}}
+%	\caption{}
+\end{figure}
+$0
+endsnippet
 
 snippet eq "equation environment"
 \begin{equation}
@@ -103,12 +139,37 @@ endsnippet
 
 context "math()"
 snippet bm "\bm" iAw
-\bm{${1:${VISUAL}}} $0
+\bm{${1:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+snippet til "\tilde" iAw
+\tilde{${1:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+snippet eval "\eval" iAw
+\eval{${1:${VISUAL}}}$0
 endsnippet
 
 context "math()"
 snippet bb "\mathbb" iAw
 \mathbb{${1:${VISUAL}}} $0
+endsnippet
+context "math()"
+
+snippet ope "\operatorname" iw
+\operatorname{${1:${VISUAL}}} $0
+endsnippet
+
+context "math()"
+snippet qu "\quad" iAw
+\quad $0
+endsnippet
+
+context "math()"
+snippet qq "\quad text" iAw
+\qq{$1} $0
 endsnippet
 
 context "math()"
@@ -131,20 +192,48 @@ snippet bf "\textbf"
 \textbf{${1:${VISUAL}}} $0
 endsnippet
 
+snippet sc "\textbf" 
+\textsc{${1:${VISUAL}}} $0
+endsnippet
 
 context "math()"
 snippet dv "derivative" iAw
- \frac{d {$1}}{d {$2}} $0
+ \dv{$1}{$2} $0
 endsnippet
 
 context "math()"
 snippet ... "\dots" iA
- \dots $0
+\dots $0
+endsnippet
+
+context "math()"
+snippet +- "\pm" iA
+\pm $0
+endsnippet
+
+context "math()"
+snippet bar "\bar" i
+\bar{$1}$0
+endsnippet
+
+context "math()"
+snippet hat "\hat" i
+\hat{${1:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+snippet dot "\dot" i
+\dot{$1}$0
 endsnippet
 
 context "math()"
 snippet pdv "partial derivation" iAw
-\frac{\partial $1}{\partial $2} $0
+\pdv{$1}{$2} $0
+endsnippet
+
+context "math()"
+snippet fdv "functional derivation" iAw
+\fdv{$1}{$2} $0
 endsnippet
 
 context "math()"
@@ -157,6 +246,10 @@ snippet boxed "boxed" iAw
 \boxed{${1:${VISUAL}}} $0
 endsnippet
 
+snippet href "href" iw
+\href{${1:link}}{${2:desc}}
+endsnippet
+
 context "math()"
 snippet set "set" iAw
 \\{${1:${VISUAL}}\\} $0
@@ -165,6 +258,16 @@ endsnippet
 context "math()"
 snippet pdd "partial derivation in line" iA
 \\partial_{$1} $0
+endsnippet
+
+context "math()"
+snippet par "partial der symbol" iAw
+\\partial $0
+endsnippet
+
+context "math()"
+snippet pdu "partial derivation in line up" iA
+\\partial^{$1} $0
 endsnippet
 
 snippet beg "begin{} / end{}" b
@@ -194,7 +297,7 @@ endsnippet
 
 
 snippet dk "Math" wiA
-$ ${1:${VISUAL}} $`!p
+$${1:${VISUAL}}$`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
 else:
@@ -204,9 +307,9 @@ endsnippet
 
 
 snippet dm "Math" wA
-\[
+$$
 ${1:${VISUAL}}
-.\] 
+.$$
 $0
 endsnippet
 
@@ -245,8 +348,13 @@ endsnippet
 
 
 context "math()"
-snippet lr  "left( right)" iAw
+snippet lrp  "left( right)" iAw
 \\left( ${1:${VISUAL}} \\right) $0
+endsnippet
+
+context "math()"
+snippet lra  "left( right)" iAw
+\\left\langle ${1:${VISUAL}} \\right\rangle $0
 endsnippet
 
 context "math()"
@@ -255,18 +363,33 @@ snippet bp  "big( big)" iAw
 endsnippet
 
 context "math()"
-snippet blr  "left[ right]" iAw
+snippet lrb  "left[ right]" iAw
 \\left[ ${1:${VISUAL}} \\right] $0
 endsnippet
 
 context "math()"
-snippet cbr  "left{ right}" iAw
+snippet lrr  "left{ right}" iAw
 \\left\lbrace ${1:${VISUAL}} \\right\rbrace $0
 endsnippet
 
 context "math()"
-snippet dint "integral" wA
+snippet ddint "integral" w
 \int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
+endsnippet
+
+context "math()"
+snippet intd "integral" wA
+\int \dd[$2]{$1} $0
+endsnippet
+
+context "math()"
+snippet dint "integral" wA
+\int_{$1} \dd[$2]{$3} $0
+endsnippet
+
+context "math()"
+snippet dd "differential" wA
+\dd[$2]{$1}$0
 endsnippet
 
 context "math()"
@@ -281,14 +404,19 @@ snippet dp "dot product" iA
 endsnippet
 
 context "math()"
-snippet xx "cross product" iAw
+snippet times "cross product" iAw
 \\times $0
 endsnippet
 
 
 context "math()"
-snippet ex "exp" iAw
+snippet ex "exp" iw
 e^{$1} $0
+endsnippet
+
+context "math()"
+snippet exp "exp full" iw
+\exp \left($1 \right) $0
 endsnippet
 
 context "math()"
@@ -318,7 +446,7 @@ snippet sum "sum_{}^{}"
 endsnippet
 
 context "math()"
-snippet hb "hbar" iA
+snippet hb "hbar" i
 \\hbar 
 endsnippet
 
@@ -353,12 +481,20 @@ snippet cos "cos" iA
 \cos $0
 endsnippet
 
+context "math()"
+snippet tan "cos" iA
+\tan $0
+endsnippet
 
 context "math()"
 snippet sin "sin" iA
 \sin $0
 endsnippet
 
+context "math()"
+snippet log "log" iA
+\log $0
+endsnippet
 
 context "math()"
 snippet => "Rightarrow" iA
@@ -368,12 +504,6 @@ endsnippet
 context "math()"
 snippet -> "rightarrow" iA
 \\rightarrow 
-endsnippet
-
-
-context "math()"
-snippet ^ "hat" i
-\hat{$1} $0
 endsnippet
 
 context "math()"
@@ -401,12 +531,12 @@ endsnippet
 
 context "math()"
 snippet ;d "\delta" iA
-\delta 
+\delta
 endsnippet
 
 context "math()"
 snippet ;h "\eta" iA
-\eta 
+\eta
 endsnippet
 
 context "math()"
@@ -420,10 +550,20 @@ snippet ;s "\sigma" iA
 endsnippet
 
 context "math()"
+snippet ;S "\Sigma" iA
+\Sigma
+endsnippet
+
+context "math()"
 snippet ;p "\pi" iA
-\pi 
+\pi
 endsnippet
  
+context "math()"
+snippet ;P "\Pi" iA
+\Pi
+endsnippet
+
 context "math()"
 snippet ;x "\ch" iA
 \chi
@@ -431,17 +571,32 @@ endsnippet
 
 context "math()"
 snippet ;o "\omega" iA
-\omega 
+\omega
+endsnippet
+
+context "math()"
+snippet ;O "\Omega" iA
+\Omega
+endsnippet
+
+context "math()"
+snippet ell "\ell" iA
+\ell
 endsnippet
 
 context "math()"
 snippet ;u "\theta" iA
-\theta 
+\theta
+endsnippet
+
+context "math()"
+snippet ;U "\Theta" iA
+\Theta
 endsnippet
 
 context "math()"
 snippet ;l "\lambda" iA
-\lambda 
+\lambda
 endsnippet
 
 
@@ -457,12 +612,12 @@ endsnippet
 
 context "math()"
 snippet ;m "\mu" iA
-\mu 
+\mu
 endsnippet
 
 context "math()"
 snippet ;n "\nu" iA
-\nu 
+\nu
 endsnippet
 
 context "math()"
@@ -472,7 +627,12 @@ endsnippet
 
 context "math()"
 snippet ;f "\phi" iA
-\phi 
+\phi
+endsnippet
+
+context "math()"
+snippet ;F "\phi" iA
+\Phi
 endsnippet
 
 context "math()"
@@ -496,6 +656,16 @@ snippet ;k "\kappa" iA
 endsnippet
 
 context "math()"
+snippet ;z "\zeta" iA
+\zeta
+endsnippet
+
+context "math()"
+snippet ;a "\alpha" iA
+\alpha
+endsnippet
+
+context "math()"
 snippet ;b "\beta" iA
 \beta
 endsnippet
@@ -508,6 +678,11 @@ endsnippet
 context "math()"
 snippet ;c "\psi" iA
 \psi 
+endsnippet
+
+context "math()"
+snippet ;C "\psi" iA
+\Psi 
 endsnippet
 
 context "math()"
@@ -544,6 +719,10 @@ snippet "\<(.*?)\>" "mean value" riA
 \langle `!p snip.rv = match.group(1)` \rangle
 endsnippet
 
+context "math()"
+snippet var "variational" wiA
+\var{${1:${VISUAL}}} $0
+endsnippet
 
 context "math()"
 snippet oo "infty" wiA
@@ -570,3 +749,26 @@ $13 & $14 & $15 & $16 \\\\
 \end{pmatrix} $0
 endsnippet
 
+snippet color "color" wi
+{\color{${1:RawSienna}} ${2:${VISUAL}}} $0
+endsnippet
+
+snippet plot "plot"
+\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[ticks=none,legend style={nodes={scale=0.8, transform shape}},
+				xmin=-5,xmax=20,
+				ymin=-5,ymax=5,
+				xlabel=$ g $,
+				ylabel=$ \beta $]
+			\addplot[only marks,red] coordinates {
+					(0,0)
+				};
+			\node [above] at (axis cs: 1,  0) {$UV$};
+			\addplot[cyan,thick,domain=0:20] expression {-5/4*x^3/(4*pi)^3};
+			% \addlegendentry{\( \epsilon = 0  \)}
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+$0
+endsnippet

@@ -1,6 +1,12 @@
 local cmd = vim.cmd
 local opt = vim.opt
 
+cmd([[
+augroup user_colors
+  autocmd!
+  autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+augroup END
+]])
 cmd("filetype plugin on")
 cmd("colorscheme darkforest")
 -- Disable automatic commenting on new line
@@ -19,7 +25,6 @@ function! Toggle_transparent()
         hi Normal guibg=NONE ctermbg=NONE
         let t:is_transparent = 1
     else
-        set background=dark
         hi Normal ctermbg=none guibg=#0F0E0E"
         let t:is_transparent = 0
     endif
@@ -37,6 +42,7 @@ opt.mouse = "a"
 opt.signcolumn = "yes"
 opt.cmdheight = 1
 opt.updatetime = 300 -- update interval for gitsigns
+opt.pumheight = 7 -- update interval for gitsigns
 opt.clipboard = "unnamedplus"
 -- opt.conceallevel    = 2
 opt.fileencoding = "utf-8"

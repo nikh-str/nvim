@@ -53,6 +53,7 @@ return require("packer").startup(function(use)
 
 	-- Colorscheme
 	use("tiagovla/tokyodark.nvim")
+	use("Mofiqul/vscode.nvim")
 
 	-- Symbol Outline
 	use({ "simrat39/symbols-outline.nvim" })
@@ -65,12 +66,12 @@ return require("packer").startup(function(use)
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
-		requires = {
-			{ "nvim-lua/popup.nvim" },
-			{ "nvim-lua/plenary.nvim" },
-		},
-		-- config = [[require('nv-telescope')]],
-		-- cmd = "Telescope"
+		tag = "0.1.0",
+		requires = { { "nvim-lua/plenary.nvim" } },
+		-- 	requires = {
+		-- 		{ "nvim-lua/popup.nvim" },
+		-- 		{ "nvim-lua/plenary.nvim" },
+		-- 	},
 	})
 
 	use({ "lukas-reineke/indent-blankline.nvim" })
@@ -142,13 +143,22 @@ return require("packer").startup(function(use)
 
 	use({ "lervag/vimtex" })
 	use({ "vimwiki/vimwiki" })
-	use("renerocksai/telekasten.nvim")
+	-- use("renerocksai/telekasten.nvim")
+	-- use({
+	-- 	"nvim-neorg/neorg",
+	-- 	config = function()
+	-- 		require("nv-neorg").config()
+	-- 	end,
+	-- 	requires = "nvim-neorg/neorg-telescope", -- Be sure to pull in the repo
+	-- })
 	use({
-		"nvim-neorg/neorg",
+		"AckslD/nvim-neoclip.lua",
+		requires = {
+			{ "nvim-telescope/telescope.nvim" },
+		},
 		config = function()
-			require("nv-neorg").config()
+			require("neoclip").setup()
 		end,
-		requires = "nvim-neorg/neorg-telescope", -- Be sure to pull in the repo
 	})
 
 	use({ "sirver/ultisnips" })
@@ -177,5 +187,21 @@ return require("packer").startup(function(use)
 	})
 	-- use({ "JuliaEditorSupport/julia-vim" })
 	use({ "jpalardy/vim-slime" })
-	use({ "michaelb/sniprun", run = "bash ./install.sh" })
+	-- use({ "michaelb/sniprun", run = "bash ./install.sh" })
+	use({
+		"nyngwang/NeoRoot.lua",
+		config = function()
+			require("neo-root").setup({
+				CUR_MODE = 2, -- 1 for file/buffer mode, 2 for proj-mode
+			})
+		end,
+	})
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	})
 end)
