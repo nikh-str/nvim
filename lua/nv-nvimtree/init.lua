@@ -65,11 +65,6 @@ require("nvim-tree").setup({
 			error = "",
 		},
 	},
-	update_focused_file = {
-		enable = false,
-		update_cwd = false,
-		ignore_list = {},
-	},
 	system_open = {
 		cmd = nil,
 		args = {},

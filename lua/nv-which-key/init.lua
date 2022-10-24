@@ -40,8 +40,8 @@ require("which-key").setup({
 
 -- Set leader
 -- vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
-vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+vim.g.mapleader = " "
 
 local opts = {
 	mode = "n", -- NORMAL mode
@@ -51,7 +51,6 @@ local opts = {
 	noremap = true, -- use `noremap` when creating keymaps
 	nowait = false, -- use `nowait` when creating keymaps
 }
-
 -- no hl
 vim.api.nvim_set_keymap("n", "<Leader>H", ':let @/=""<CR>', { noremap = true, silent = true })
 

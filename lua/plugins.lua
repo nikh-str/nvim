@@ -50,6 +50,7 @@ return require("packer").startup(function(use)
 	use({ "folke/which-key.nvim" })
 
 	use({ "tpope/vim-surround" })
+    use "kyazdani42/nvim-web-devicons"
 
 	-- Colorscheme
 	use("tiagovla/tokyodark.nvim")

@@ -22,6 +22,8 @@ M.config = function()
 					text_align = "left",
 				},
 			},
+            color_icons = true,
+            show_buffer_icons = true,
 			-- separator_style = "thick",
 		},
 		highlights = {

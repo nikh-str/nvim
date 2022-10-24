@@ -114,7 +114,7 @@ endsnippet
 snippet ink "inkscape fig" b
 \begin{figure}[H]
     \centering
-    \scalebox{0.7}{\import{${2:folder}}{${1:pdf_tex_file}}}
+    \scalebox{1}{\import{${2:folder}}{${1:pdf_tex_file}}}
 %	\caption{}
 \end{figure}
 $0
@@ -125,6 +125,14 @@ snippet eq "equation environment"
 	${1:${VISUAL}}
 \end{equation}
 $0
+endsnippet
+
+snippet lab "label"
+\label{$1}$0
+endsnippet
+
+snippet eqr "eqref"
+\eqref{$1} $0
 endsnippet
 
 snippet ali "Align" bA
@@ -190,6 +198,11 @@ endsnippet
 
 snippet bf "\textbf" 
 \textbf{${1:${VISUAL}}} $0
+endsnippet
+
+context "math()"
+snippet rm "\mathrm" i
+\mathrm{${1:${VISUAL}}} $0
 endsnippet
 
 snippet sc "\textbf" 
@@ -388,8 +401,13 @@ snippet dint "integral" wA
 endsnippet
 
 context "math()"
-snippet dd "differential" wA
+snippet dud "differential" wA
 \dd[$2]{$1}$0
+endsnippet
+
+context "math()"
+snippet dd "differential" wA
+\dd{$1}$0
 endsnippet
 
 context "math()"
@@ -502,7 +520,7 @@ snippet => "Rightarrow" iA
 endsnippet
 
 context "math()"
-snippet -> "rightarrow" iA
+snippet -> "rightarrow" wA
 \\rightarrow 
 endsnippet
 
@@ -771,4 +789,16 @@ snippet plot "plot"
 	\end{tikzpicture}
 \end{center}
 $0
+endsnippet
+
+snippet app "appendix counter"
+\setcounter{equation}{0}
+\renewcommand {\theequation }{
+    \thesection .\arabic{equation}
+} 
+endsnippet
+
+context "math()"
+snippet entr "entropy"
+S\qty($1 \, \lVert\, $2) $0
 endsnippet
