@@ -1,5 +1,6 @@
 vim.g.vimtex_compiler_programme = "nvr"
 vim.g.vimtex_view_method = "zathura"
+-- vim.g.vimtex_quickfix_ignore_filters = "Underfull"
 -- vim.g.vimtex_view_method = "mupdf"
 -- vim.g.vimtex_view_general_viewer = "evince"
 -- vim.g.vimtex_compiler_engine = "lualatex" -- for tikz feynman to work

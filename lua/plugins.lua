@@ -67,7 +67,7 @@ return require("packer").startup(function(use)
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.0",
+		tag = "0.1.4",
 		requires = { { "nvim-lua/plenary.nvim" } },
 		-- 	requires = {
 		-- 		{ "nvim-lua/popup.nvim" },
@@ -143,7 +143,7 @@ return require("packer").startup(function(use)
 	use({ "KabbAmine/vCoolor.vim" }) -- alt-c to color pick
 
 	use({ "lervag/vimtex" })
-	use({ "vimwiki/vimwiki" })
+	-- use({ "vimwiki/vimwiki" })
 	-- use("renerocksai/telekasten.nvim")
 	-- use({
 	-- 	"nvim-neorg/neorg",

@@ -40,15 +40,15 @@ M.toggle_tree = function()
 	end
 end
 
-local tree_cb = require("nvim-tree.config").nvim_tree_callback
+-- local tree_cb = require("nvim-tree.config").nvim_tree_callback
 require("nvim-tree").setup({
 	-- close_if_last_window = true,
 	-- follow_current_file = true, -- This will find and focus the file in the active buffer every
 	-- time the current file is changed while the tree is open.
 	disable_netrw = true,
 	hijack_netrw = true,
-	open_on_setup = false,
-	ignore_ft_on_setup = {},
+	-- open_on_setup = false,
+	-- ignore_ft_on_setup = {},
 	open_on_tab = false,
 	hijack_cursor = false,
 	update_cwd = false,
@@ -75,16 +75,16 @@ require("nvim-tree").setup({
 	},
 	view = {
 		width = 25,
-		hide_root_folder = false,
+		-- hide_root_folder = false,
 		side = "left",
 		adaptive_size = true,
-		mappings = {
-			list = {
-				{ key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },
-				{ key = "h", cb = tree_cb("close_node") },
-				{ key = "v", cb = tree_cb("vsplit") },
-			},
-		},
+		-- mappings = {
+			-- list = {
+				-- { key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },
+				-- { key = "h", cb = tree_cb("close_node") },
+				-- { key = "v", cb = tree_cb("vsplit") },
+			-- },
+		-- },
 	},
 })
 return M

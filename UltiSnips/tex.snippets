@@ -64,6 +64,10 @@ $0
 \end{document}
 endsnippet
 
+snippet tol "tolerant command"
+\newenvironment{tolerant}[1]{\par\tolerance=#1\relax}{\par}
+endsnippet
+
 snippet lua "lua compile"
 %! TeX program = lualatex
 endsnippet
@@ -111,6 +115,15 @@ snippet fig "Figure env" b
 $0
 endsnippet
 
+snippet subfig "Subigure env" b
+\begin{subfigure}{${1:0.4\linewidth}}
+	\includegraphics[width=0.8\textwidth]{${2:imagefile}}
+	%\caption{}
+	%\label{fig:}
+\end{subfigure}
+$0
+endsnippet
+
 snippet ink "inkscape fig" b
 \begin{figure}[H]
     \centering
@@ -127,6 +140,19 @@ snippet eq "equation environment"
 $0
 endsnippet
 
+snippet scal "scalebox environment"
+\begin{scalebox}{$2}{
+${1:${VISUAL}}
+}\end{scalebox}
+$0
+endsnippet
+
+snippet tole "tolerant environment"
+\begin{tolerant}{$2}{\noindent
+	${1:${VISUAL}}
+}\end{tolerant}$0
+endsnippet
+
 snippet lab "label"
 \label{$1}$0
 endsnippet
@@ -136,9 +162,9 @@ snippet eqr "eqref"
 endsnippet
 
 snippet ali "Align" bA
-\begin{align*}
+\begin{align}
 	${1:${VISUAL}}
-.\end{align*}
+\end{align}
 endsnippet
 
 snippet mar "margin note" iw
@@ -191,12 +217,16 @@ snippet lagr "lagrangian" iw
 endsnippet
 
 context "math()"
-snippet cal "lagrangian" iw
-\mathcal{$1} $0
+snippet mcal "lagrangian" iA
+\mathcal{$1}$0
 endsnippet
 
+context "math()"
+snippet bf "\textbf"  i
+\mathbf{${1:${VISUAL}}}$0
+endsnippet
 
-snippet bf "\textbf" 
+snippet bf "\textbf" i
 \textbf{${1:${VISUAL}}} $0
 endsnippet
 
@@ -205,7 +235,7 @@ snippet rm "\mathrm" i
 \mathrm{${1:${VISUAL}}} $0
 endsnippet
 
-snippet sc "\textbf" 
+snippet sc "\textsc" 
 \textsc{${1:${VISUAL}}} $0
 endsnippet
 
@@ -235,7 +265,7 @@ snippet hat "\hat" i
 endsnippet
 
 context "math()"
-snippet dot "\dot" i
+snippet dot "\dot" iA
 \dot{$1}$0
 endsnippet
 
@@ -309,7 +339,7 @@ snippet desc "Description" b
 endsnippet
 
 
-snippet dk "Math" wiA
+snippet dk "Math" iA
 $${1:${VISUAL}}$`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
@@ -322,7 +352,7 @@ endsnippet
 snippet dm "Math" wA
 $$
 ${1:${VISUAL}}
-.$$
+\,.$$
 $0
 endsnippet
 
@@ -365,8 +395,14 @@ snippet lrp  "left( right)" iAw
 \\left( ${1:${VISUAL}} \\right) $0
 endsnippet
 
+
+context "math()" 
+snippet qp  "left( right)" iA
+\qty( ${1:${VISUAL}} ) $0
+endsnippet
+
 context "math()"
-snippet lra  "left( right)" iAw
+snippet lra  "left( right)" iw
 \\left\langle ${1:${VISUAL}} \\right\rangle $0
 endsnippet
 
@@ -381,17 +417,22 @@ snippet lrb  "left[ right]" iAw
 endsnippet
 
 context "math()"
+snippet qb  "left[ right]" iAw
+\qty[ ${1:${VISUAL}} ] $0
+endsnippet
+
+context "math()"
 snippet lrr  "left{ right}" iAw
 \\left\lbrace ${1:${VISUAL}} \\right\rbrace $0
 endsnippet
 
-context "math()"
+context "math()" 
 snippet ddint "integral" w
 \int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
 endsnippet
 
 context "math()"
-snippet intd "integral" wA
+snippet intd "integral" w
 \int \dd[$2]{$1} $0
 endsnippet
 
@@ -422,7 +463,7 @@ snippet dp "dot product" iA
 endsnippet
 
 context "math()"
-snippet times "cross product" iAw
+snippet xx "cross product" iAw
 \\times $0
 endsnippet
 
@@ -520,8 +561,8 @@ snippet => "Rightarrow" iA
 endsnippet
 
 context "math()"
-snippet -> "rightarrow" wA
-\\rightarrow 
+snippet -> "rightarrow" Ai
+\\to 
 endsnippet
 
 context "math()"
@@ -564,7 +605,7 @@ endsnippet
 
 context "math()"
 snippet ;s "\sigma" iA
-\sigma 
+\sigma
 endsnippet
 
 context "math()"
@@ -733,7 +774,7 @@ snippet "(.*)\\bra{(.*?)}([^\|]*?)\>" "braket" riA
 endsnippet
 
 context "math()"
-snippet "\<(.*?)\>" "mean value" riA
+snippet "\<(.*?)\>" "mean value" ri
 \langle `!p snip.rv = match.group(1)` \rangle
 endsnippet
 
@@ -792,10 +833,11 @@ $0
 endsnippet
 
 snippet app "appendix counter"
-\setcounter{equation}{0}
-\renewcommand {\theequation }{
-    \thesection .\arabic{equation}
-} 
+\numberwithin{equation}{section}
+endsnippet
+
+snippet pi "paper issue"
+%PaperIssue: 
 endsnippet
 
 context "math()"
