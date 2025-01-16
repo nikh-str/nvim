@@ -5,6 +5,10 @@ vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { silent = true })
 vim.api.nvim_set_keymap("n", "<F12>", ":exe ':silent !librewolf %'<CR>", { silent = true })
 
+vim.api.nvim_set_keymap("i", "<C-f>" , "<ESC>:silent exec '.!inkscape-figures create '.getline('.').' '.b:vimtex.root.'/figs/'<CR><CR>:w<CR>", {noremap=true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-f>", ":silent exec !inkscape-figures edit .b:vimtex.root.'/figs/ > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>", { silent = true })
+    -- :silent exec !inkscape-figures edit .b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>", {silent = true})
+
 --nabla
 vim.api.nvim_set_keymap("n", "<F5>", ':lua require("nabla").action()<CR>', { silent = true })
 

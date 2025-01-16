@@ -22,6 +22,7 @@ require("which-key").setup({
 		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
 		separator = "➜", -- symbol used between a key and it's label
 		group = "+", -- symbol prepended to a group
+        ellipsis = "…"
 	},
 	window = {
 		border = "single", -- none, single, double, shadow
@@ -60,8 +61,10 @@ vim.api.nvim_set_keymap("n", "<Leader>r", ":RnvimrToggle<CR>", { noremap = true,
 vim.api.nvim_set_keymap("n", "<Leader>;", ":Dashboard<CR>", { noremap = true, silent = true })
 
 -- Comments
-vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>/', '<CMD>lua require("Comment.api").toggle.linewise.current()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>/', '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<leader>v", "<C-W>v<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>h", "<C-W>s<CR>", { noremap = true, silent = true })

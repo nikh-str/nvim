@@ -167,6 +167,13 @@ snippet ali "Align" bA
 \end{align}
 endsnippet
 
+snippet def "definition" b
+\begin{mydef}{${1:title}}{${2:ref}}
+	$0
+\end{mydef}
+endsnippet
+
+
 snippet mar "margin note" iw
 \marginnote{ $1 } $0
 endsnippet
@@ -187,7 +194,7 @@ snippet eval "\eval" iAw
 endsnippet
 
 context "math()"
-snippet bb "\mathbb" iAw
+snippet mbb "\mathbb" iAw
 \mathbb{${1:${VISUAL}}} $0
 endsnippet
 context "math()"
